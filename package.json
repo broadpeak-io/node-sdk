@@ -1,0 +1,39 @@
+{
+  "name": "broadpeak.io",
+  "version": "0.1.1",
+  "description": "broadpeak.io SDK for NodeJS",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project ./",
+    "build:docs": "typedoc",
+    "build:types": "npx ts-node scripts/generate-types.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist/**/*.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/broadpeak-io/node-sdk.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/broadpeak-io/node-sdk/issues"
+  },
+  "homepage": "https://github.com/broadpeak-io/node-sdk#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.26",
+    "typedoc-theme-hierarchy": "^3.1.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^10.1.0",
+    "api": "^5.0.7",
+    "dotenv": "^16.0.3",
+    "json-schema-to-typescript": "^12.0.0",
+    "node-fetch": "2.6.9"
+  }
+}

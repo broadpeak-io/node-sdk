@@ -1,0 +1,31 @@
+name: Update online documentation
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_docs_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Node  / NPM
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Build docs
+        run: |
+          npm ci
+          npm run build:docs
+      - name: Deploy docs to S3 bucket
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: 'origin-broadpeak-sdk-docs'
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'eu-north-1'
+          SOURCE_DIR: 'docs/'
